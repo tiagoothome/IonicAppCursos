@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cursos</ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content padding class="jr">
+  <div padding>
+    <ion-segment color="dark" [(ngModel)]="cursos">
+      <ion-segment-button value="concluidos">
+        Concluídos
+      </ion-segment-button>
+      <ion-segment-button value="proximos">
+        Próximos
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+ 
+  <div [ngSwitch]="cursos">
+    <ion-list *ngSwitchCase="'proximos'">
+
+      <button ion-item *ngFor="let curso of cursosA" (click)="openPageDetalhes(curso)">
+        <ion-avatar item-start>
+          <img src="{{curso?.img_icon}}">
+ 
+        </ion-avatar>
+        {{ curso.nome }} <br> <h6>Iniciará em: {{ curso.dt_realizacao }}</h6>
+      </button> 
+      
+     </ion-list>
+ 
+    <ion-list *ngSwitchCase="'concluidos'">
+
+      <button ion-item *ngFor="let curso of cursosArr" (click)="openPageDetalhes(curso)">
+        <ion-avatar item-start>
+          <img src="{{curso?.img_icon}}">
+ 
+        </ion-avatar>
+        {{ curso.nome }} <br> <h6>Concluido em: {{ curso.dt_realizacao }}</h6>
+      </button> 
+
+    </ion-list>
+  </div>
+</ion-content>
